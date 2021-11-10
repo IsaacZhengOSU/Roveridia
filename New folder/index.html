@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>result</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <header>
+        <div class="headerSec">
+            <h1 class="header-title">OSU Trade Market</h1>
+        </div>
+    </header>
+    <main class="post">
+        <aside id="filter">
+            <fieldset>
+                <legend>Filter</legend>
+                <div id="inputName">
+                    <label for="name">name</label><br>
+                    <input type="text" id="searchName">
+                </div>
+                <div>
+                    <label for="priceRange">price range</label><br>
+                    <input type="text" id="searchMin" name="fname"><br>
+                    <input type="text" id="searchMax" name="fname"><br>
+                </div>
+            </fieldset>
+
+            <button id="searchButton" class="filterUpdate">search</button>
+        </aside>
+
+        <section id="display">
+            <div class="items" name="PCcase" price=50>
+                <div class="insideBox">
+                    <div class="pic">
+                        <img src="./img/pccase.jpg" alt="">
+                    </div>
+                    <div>
+                        <a href="./PCcase.html">PC Case</a><br>
+                        <p>$50</p>
+                    </div>
+                </div>
+            </div>
+            <div class="items" name="smartphone" price=500>
+                <div class="insideBox">
+                    <div class="pic">
+                        <img src="./img/smartphone.jpg" alt="">
+                    </div>
+                    <div>
+                        <a href="./smartphone.html">smartphone</a><br>
+                        <p>$500</p>
+                    </div>
+                </div>
+            </div>
+            <div class="items" name="desk" price=20>
+                <div class="insideBox">
+                    <div class="pic">
+                        <img src="./img/desk.jpg" alt="">
+                    </div>
+                    <div>
+                        <a href="./desk.html">desk</a><br>
+                        <p>$20</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="download">
+        <a href="list">view brief list</a>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
+
+
+<!-- <div style="width:150px;
+            height:150px;
+            line-height:3em;
+            overflow:scroll;
+            padding:5px;
+            background-color:#FCFADD;
+            color:#714D03;
+            scrollbar-base-color:#DEBB07;">
+    This 'div' element uses 'overflow:scroll' to create scrollbars whenever the contents of the 'div' become too large.
+</div> -->
