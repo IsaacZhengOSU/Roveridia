@@ -13,22 +13,39 @@ app.set("view engine", "handlebars")
 
 app.set('port', 58471);
 
+const cors = require("cors");
+const allowedOrigins = [
+  'http://flip1.engr.oregonstate.edu:7771',
+  'http://flip1.engr.oregonstate.edu:58471/data?waypoint=1',
+  'http://flip1.engr.oregonstate.edu:58471/data?waypoint=2',
+  'http://flip1.engr.oregonstate.edu:58471/data?waypoint=3',
+  'http://flip1.engr.oregonstate.edu:58471/data?waypoint=4',
+  'http://flip1.engr.oregonstate.edu:58471/data?waypoint=5',
+  'http://flip1.engr.oregonstate.edu:58471/data?waypoint=6',
+  'http://flip1.engr.oregonstate.edu:58471/data?waypoint=7'
+];
+
+app.use(
+    cors({
+        origin: function(origin, callback) {
+            if (!origin) return callback(null, true);
+            if (allowedOrigins.indexOf(origin) === -1) {
+                var msg =
+                    "The CORS policy for this site does not " +
+                    "allow access from the specified Origin.";
+                return callback(new Error(msg), false);
+            }
+            return callback(null, true);
+        },
+    })
+);
+
 app.get('/', function(req, res) {
   res.render("home");
 });
 
 app.get('/rovers', function(req, res) {
   res.render('rovers');
-});
-
-function genContext() {
-  var stuffToDisplay = {};
-  stuffToDisplay.time = (new Date(Date.now())).toLocaleTimeString('en-US');
-  return stuffToDisplay;
-}
-
-app.get('/time', function(req, res) {
-  res.render('time', genContext());
 });
 
 app.get('/data', function(req, res) {
@@ -40,17 +57,6 @@ app.get('/data', function(req, res) {
     var pathName = './dataJs/waypoint' + req.query.waypoint + '.js';
     fs.readFile(pathName, 'utf8', (err, data) => {
       if (err) throw err;
-      // console.log(data);
-      // var data = JSON.parse(data);
-      // if (req.query.dataType === 'time') {
-      //   dataType = data.name;
-      // }
-      // if (req.query.dataType === 'date') {
-      //   dataType = data.date;
-      // }
-      // if (req.query.dataType === 'info') {
-      //   dataType = data.info;
-      // }
       res.type('text/plain');
       res.send(data);
     });
